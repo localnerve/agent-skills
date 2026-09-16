@@ -1,0 +1,9 @@
+{
+  "instances": {
+    "tiny-repo": {
+      "repoPath": "test/fixtures/tiny-repo",
+      "outDir": "out/tiny-repo"
+    }
+  },
+  "platforms": ["copilot", "agents-md"]
+}

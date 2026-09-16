@@ -1,0 +1,71 @@
+[
+  {
+    "id": "test-colocated-node-test",
+    "tier": 1,
+    "category": "testing",
+    "instruction": "Give every module under src/ a colocated node:test file in test/ named <module>.test.js; run the suite with `npm test`.",
+    "triggers": ["test"],
+    "evidence": [
+      { "kind": "file", "ref": "test/cache.test.js" },
+      { "kind": "doc", "ref": "docs/testing.md" }
+    ],
+    "durability": "durable",
+    "status": "active"
+  },
+  {
+    "id": "test-assert-observable",
+    "tier": 1,
+    "category": "testing",
+    "instruction": "Assert observable behavior (return values, status codes, response bodies) and use assert.deepStrictEqual for envelope shapes; never assert internal state.",
+    "triggers": ["test"],
+    "evidence": [{ "kind": "grep", "ref": "deepStrictEqual", "file": "test/errors.test.js" }],
+    "durability": "durable",
+    "status": "active"
+  },
+  {
+    "id": "test-no-network-mocks",
+    "tier": 1,
+    "category": "testing",
+    "instruction": "Do not mock the network or filesystem; the only sanctioned test double is a fake fetcher injected into CacheStore.getOrFetch().",
+    "triggers": ["mock"],
+    "evidence": [
+      { "kind": "doc", "ref": "docs/testing.md" },
+      { "kind": "symbol", "ref": "getOrFetch", "file": "src/cache.js" }
+    ],
+    "durability": "durable",
+    "status": "active"
+  },
+  {
+    "id": "test-golden-files",
+    "tier": 2,
+    "category": "testing",
+    "instruction": "Snapshot stable response bodies against golden files in test/fixtures/*.golden.json and review golden diffs like any other code change.",
+    "triggers": ["golden"],
+    "evidence": [
+      { "kind": "file", "ref": "test/fixtures/envelope.golden.json" },
+      { "kind": "doc", "ref": "docs/testing.md" }
+    ],
+    "durability": "durable",
+    "status": "active"
+  },
+  {
+    "id": "test-coverage-floor",
+    "tier": 1,
+    "category": "testing",
+    "instruction": "Treat the 80% line coverage threshold as a floor to be revisited after the BFF refactor; do not lower it without stating why in the PR description.",
+    "triggers": ["coverage"],
+    "evidence": [{ "kind": "grep", "ref": "80% lines", "file": "docs/testing.md" }],
+    "durability": "volatile",
+    "status": "active"
+  },
+  {
+    "id": "test-runner",
+    "tier": 1,
+    "category": "testing",
+    "instruction": "Run tests with `npm test` (node --test); never introduce another test runner.",
+    "triggers": ["test"],
+    "evidence": [{ "kind": "grep", "ref": "--test", "file": "package.json" }],
+    "durability": "durable",
+    "status": "active"
+  }
+]

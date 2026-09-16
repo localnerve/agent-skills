@@ -1,0 +1,77 @@
+[
+  {
+    "id": "arch-route-registration",
+    "tier": 1,
+    "category": "architecture",
+    "instruction": "Register every HTTP route through registerRoutes() in src/server.js; add one file per route under src/routes/ and append it to the ROUTES list.",
+    "triggers": ["route"],
+    "evidence": [{ "kind": "symbol", "ref": "registerRoutes", "file": "src/server.js" }],
+    "durability": "durable",
+    "status": "active"
+  },
+  {
+    "id": "arch-no-routing-framework",
+    "tier": 1,
+    "category": "architecture",
+    "instruction": "Do not introduce a routing framework; routes are plain { path, method, handler } objects.",
+    "triggers": ["route", "handler"],
+    "evidence": [
+      { "kind": "file", "ref": "src/routes/health.js" },
+      { "kind": "doc", "ref": "docs/architecture.md" }
+    ],
+    "durability": "durable",
+    "status": "active"
+  },
+  {
+    "id": "arch-fetch-through-cache",
+    "tier": 1,
+    "category": "architecture",
+    "instruction": "Fetch all data via CacheStore.getOrFetch(key, fetcher); never memoize or cache per call.",
+    "triggers": ["cache"],
+    "evidence": [
+      { "kind": "symbol", "ref": "getOrFetch", "file": "src/cache.js" },
+      { "kind": "doc", "ref": "docs/architecture.md" }
+    ],
+    "durability": "durable",
+    "status": "active"
+  },
+  {
+    "id": "arch-swr-semantics",
+    "tier": 2,
+    "category": "architecture",
+    "instruction": "Follow the stale-while-revalidate contract of CacheStore: fresh within ttlMs, background revalidation between ttlMs and staleMs, blocking fetch beyond staleMs; do not add a second caching layer.",
+    "triggers": ["cache"],
+    "evidence": [
+      { "kind": "grep", "ref": "staleMs", "file": "src/cache.js" },
+      { "kind": "doc", "ref": "docs/architecture.md" }
+    ],
+    "durability": "durable",
+    "status": "active"
+  },
+  {
+    "id": "arch-error-envelope",
+    "tier": 1,
+    "category": "architecture",
+    "instruction": "Build error responses only with toEnvelope(); never send raw exceptions or stack traces to clients.",
+    "triggers": ["error"],
+    "evidence": [
+      { "kind": "symbol", "ref": "toEnvelope", "file": "src/errors.js" },
+      { "kind": "doc", "ref": "docs/architecture.md" }
+    ],
+    "durability": "durable",
+    "status": "active"
+  },
+  {
+    "id": "arch-items-cache-key",
+    "tier": 2,
+    "category": "architecture",
+    "instruction": "The /items route currently caches its list under the key 'items'; if the endpoint is split per tenant, re-key the cache accordingly.",
+    "triggers": ["cache"],
+    "evidence": [
+      { "kind": "grep", "ref": "getOrFetch(\"items\"", "file": "src/routes/items.js" },
+      { "kind": "symbol", "ref": "fetchItems", "file": "src/routes/items.js" }
+    ],
+    "durability": "volatile",
+    "status": "experimental"
+  }
+]

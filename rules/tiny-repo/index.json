@@ -1,0 +1,18 @@
+{
+  "instance": "tiny-repo",
+  "description": "Miniature zero-dependency ESM Node.js reference repo; test subject for the agent-skills compiler and verifier.",
+  "categories": ["architecture", "testing", "security"],
+  "tier0": {
+    "disciplines": [
+      "Zero-dependency ESM Node.js; never add npm dependencies.",
+      "Call setSecurityHeaders() before every send; escape untrusted strings with escapeHtml().",
+      "All data fetching goes through CacheStore.getOrFetch; no ad-hoc caching.",
+      "Errors leave only as the { error: { code, message } } envelope; every src/ module has a node:test file — run `npm test`."
+    ],
+    "triggers": {
+      "architecture": ["route", "server", "handler", "cache", "error"],
+      "testing": ["test", "coverage", "golden", "mock"],
+      "security": ["csp", "header", "escape", "xss"]
+    }
+  }
+}

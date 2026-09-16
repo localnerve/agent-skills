@@ -1,0 +1,22 @@
+{
+  "name": "agent-skills",
+  "version": "0.1.0",
+  "description": "Deterministic generator that compiles a curated rule corpus into tiered agent skills for multiple platforms.",
+  "type": "module",
+  "private": true,
+  "license": "AGPL-3.0-or-later",
+  "engines": {
+    "node": ">=18.3"
+  },
+  "scripts": {
+    "skills:compile": "node src/compile.js",
+    "skills:check": "node src/verify.js",
+    "skills:test": "node --test --test-concurrency=1 test/compile.test.mjs test/verify.test.mjs",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.30.0",
+    "eslint": "^9.30.0",
+    "globals": "^16.2.0"
+  }
+}

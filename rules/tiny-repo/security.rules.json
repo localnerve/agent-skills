@@ -1,0 +1,65 @@
+[
+  {
+    "id": "sec-headers-before-send",
+    "tier": 1,
+    "category": "security",
+    "instruction": "Call setSecurityHeaders(res) before sending any response body; new routes must not strip or override these headers.",
+    "triggers": ["header"],
+    "evidence": [{ "kind": "symbol", "ref": "setSecurityHeaders", "file": "src/security.js" }],
+    "durability": "durable",
+    "status": "active"
+  },
+  {
+    "id": "sec-escape-untrusted",
+    "tier": 1,
+    "category": "security",
+    "instruction": "Escape untrusted strings with escapeHtml() before placing them in HTML output.",
+    "triggers": ["escape", "xss"],
+    "evidence": [{ "kind": "symbol", "ref": "escapeHtml", "file": "src/security.js" }],
+    "durability": "durable",
+    "status": "active"
+  },
+  {
+    "id": "sec-csp-policy",
+    "tier": 2,
+    "category": "security",
+    "instruction": "Keep the strict CSP default-src 'none'; any relaxation requires updating docs/architecture.md and a security review.",
+    "triggers": ["csp"],
+    "evidence": [
+      { "kind": "grep", "ref": "default-src 'none'", "file": "src/security.js" },
+      { "kind": "doc", "ref": "docs/architecture.md" }
+    ],
+    "durability": "durable",
+    "status": "active"
+  },
+  {
+    "id": "sec-frame-options",
+    "tier": 2,
+    "category": "security",
+    "instruction": "X-Frame-Options DENY is currently set unconditionally; revisit it if the app ever needs to be embedded in a frame.",
+    "triggers": ["header"],
+    "evidence": [{ "kind": "grep", "ref": "X-Frame-Options", "file": "src/security.js" }],
+    "durability": "volatile",
+    "status": "active"
+  },
+  {
+    "id": "sec-json-content-type",
+    "tier": 1,
+    "category": "security",
+    "instruction": "Set Content-Type explicitly on every JSON response rather than relying on defaults.",
+    "triggers": [],
+    "evidence": [{ "kind": "grep", "ref": "application/json", "file": "src/routes/items.js" }],
+    "durability": "durable",
+    "status": "experimental"
+  },
+  {
+    "id": "sec-referrer-policy",
+    "tier": 2,
+    "category": "security",
+    "instruction": "Referrer-Policy no-referrer applies to all routes; extend per-route policies only with a documented reason.",
+    "triggers": ["header"],
+    "evidence": [{ "kind": "grep", "ref": "no-referrer", "file": "src/security.js" }],
+    "durability": "volatile",
+    "status": "active"
+  }
+]

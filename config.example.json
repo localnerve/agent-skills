@@ -1,0 +1,9 @@
+{
+  "instances": {
+    "<repo-instance-name>": {
+      "repoPath": "relative/or/absolute/path/to/reference/repo",
+      "outDir": "out/<repo-instance-name>"
+    }
+  },
+  "platforms": ["copilot", "agents-md"]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "tiny-repo",
+  "version": "0.1.0",
+  "description": "Miniature reference repo used as the agent-skills fixture and test subject.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "test": "node --test test/"
+  }
+}
