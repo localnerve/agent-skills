@@ -1,0 +1,13 @@
+{
+  "id": "test-errors-golden-snapshot",
+  "category": "testing",
+  "prompt": "We want to lock down the exact JSON shape of error responses so future refactors don't silently change the API. Add a regression test that pins the envelope body for a representative error.",
+  "expected_rules": [
+    "test-golden-files",
+    "test-assert-observable"
+  ],
+  "checklist": {
+    "test-golden-files": "A golden file (e.g. test/fixtures/<name>.golden.json) holds the expected envelope body and the test compares against it, consistent with the existing test/fixtures/envelope.golden.json pattern.",
+    "test-assert-observable": "The comparison is done on the observable response shape (e.g. assert.deepStrictEqual), not on internal state of toEnvelope()."
+  }
+}

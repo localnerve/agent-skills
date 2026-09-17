@@ -1,0 +1,11 @@
+{
+  "id": "sec-json-route-headers",
+  "category": "security",
+  "prompt": "Add a GET /stats route that returns JSON (e.g. { uptime, routes: <count> }). Make the response fully explicit so clients never depend on server defaults.",
+  "expected_rules": [
+    "sec-json-content-type"
+  ],
+  "checklist": {
+    "sec-json-content-type": "The route sets Content-Type: application/json explicitly on its JSON response rather than relying on framework/server defaults."
+  }
+}

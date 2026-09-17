@@ -1,0 +1,15 @@
+{
+  "id": "sec-new-html-page",
+  "category": "security",
+  "prompt": "Add a simple static HTML page (e.g. /about) to the app with a short description of the service. It must be served safely under this repo's current security posture.",
+  "expected_rules": [
+    "sec-headers-before-send",
+    "sec-csp-policy",
+    "sec-frame-options"
+  ],
+  "checklist": {
+    "sec-headers-before-send": "The new response goes through setSecurityHeaders(res) (or the server applies it before dispatch) and does not strip or override security headers.",
+    "sec-csp-policy": "The page works under the strict CSP (default-src 'none') — i.e. no inline scripts/styles are added, or any relaxation is explicitly called out as requiring a docs update + review.",
+    "sec-frame-options": "The change does not disable or weaken X-Frame-Options DENY; if embedding becomes needed, that trade-off is stated explicitly rather than silently applied."
+  }
+}

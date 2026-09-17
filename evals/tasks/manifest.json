@@ -1,0 +1,19 @@
+{
+  "instance": "tiny-repo",
+  "description": "Golden-task conformance suite for the tiny-repo fixture corpus. Each task is a small, realistic request against test/fixtures/tiny-repo; expected_rules is the checklist of rule IDs a conforming implementation should satisfy.",
+  "scoring": {
+    "unit": "per-task checklist coverage: satisfied / total expected_rules",
+    "conformance_pct": "average of per-task coverage across all tasks in a run",
+    "value_of_skills": "conformance(skills) - conformance(baseline)"
+  },
+  "tasks": [
+    "architecture/add-users-route.json",
+    "architecture/handle-upstream-failure.json",
+    "architecture/refresh-cache-ttl.json",
+    "testing/new-module-tests.json",
+    "testing/errors-golden-snapshot.json",
+    "security/render-user-name.json",
+    "security/new-html-page.json",
+    "security/json-route-headers.json"
+  ]
+}

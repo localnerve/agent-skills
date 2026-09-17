@@ -1,0 +1,13 @@
+{
+  "id": "arch-refresh-cache-ttl",
+  "category": "architecture",
+  "prompt": "We need the /items data to revalidate more aggressively: fresh for 30 seconds, served stale with background revalidation up to 5 minutes. Adjust the caching behavior of the items flow accordingly, following this repo's cache design.",
+  "expected_rules": [
+    "arch-fetch-through-cache",
+    "arch-swr-semantics"
+  ],
+  "checklist": {
+    "arch-fetch-through-cache": "The change still routes data through CacheStore.getOrFetch; no second caching layer or per-call memoization is added.",
+    "arch-swr-semantics": "TTL/staleness is expressed via the CacheStore's existing ttlMs/staleMs contract (e.g. options passed to getOrFetch or store construction), not by wrapping or bypassing it."
+  }
+}

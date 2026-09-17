@@ -1,0 +1,17 @@
+{
+  "id": "test-new-module-tests",
+  "category": "testing",
+  "prompt": "Write the test suite for a brand-new src module you are adding (pick a small pure module, e.g. a pricing or formatting helper). Cover its happy paths and one edge case, and make sure the full suite still runs green.",
+  "expected_rules": [
+    "test-colocated-node-test",
+    "test-assert-observable",
+    "test-no-network-mocks",
+    "test-runner"
+  ],
+  "checklist": {
+    "test-colocated-node-test": "A test/<module>.test.js file is added for the new src module, mirroring the existing naming (e.g. test/cache.test.js).",
+    "test-assert-observable": "Assertions target observable behavior (return values / shapes), e.g. assert.deepStrictEqual for structured results; no assertions on internal state.",
+    "test-no-network-mocks": "No network or filesystem mocking is introduced; at most an injected fake fetcher style double if data access is involved.",
+    "test-runner": "Tests run under the existing `npm test` (node --test) setup; no new test runner or dependency is added."
+  }
+}

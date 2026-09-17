@@ -11,7 +11,8 @@
   "scripts": {
     "skills:compile": "node src/compile.js",
     "skills:check": "node src/verify.js",
-    "skills:test": "node --test --test-concurrency=1 test/compile.test.mjs test/verify.test.mjs",
+    "skills:mine": "node src/mine.js",
+    "skills:test": "node --test --test-concurrency=1 test/compile.test.mjs test/verify.test.mjs test/mine.test.mjs",
     "lint": "eslint ."
   },
   "devDependencies": {

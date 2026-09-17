@@ -1,0 +1,11 @@
+{
+  "id": "arch-handle-upstream-failure",
+  "category": "architecture",
+  "prompt": "The /items route's fetcher can start failing (e.g. the upstream source throws). Make sure failures in that flow produce a clean client-facing error response consistent with how this repo handles errors today.",
+  "expected_rules": [
+    "arch-error-envelope"
+  ],
+  "checklist": {
+    "arch-error-envelope": "Error responses are built with toEnvelope() from src/errors.js; no raw exception, stack trace, or ad-hoc error shape is sent to the client."
+  }
+}

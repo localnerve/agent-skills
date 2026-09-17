@@ -1,0 +1,15 @@
+{
+  "id": "arch-add-users-route",
+  "category": "architecture",
+  "prompt": "Add a new GET /users route to this repo that returns a list of user objects. Fetch the data through the repository's existing data-access conventions and wire the route in so it is served by the server.",
+  "expected_rules": [
+    "arch-route-registration",
+    "arch-no-routing-framework",
+    "arch-fetch-through-cache"
+  ],
+  "checklist": {
+    "arch-route-registration": "A new src/routes/users.js exports a route object and it is added to the ROUTES list in src/server.js.",
+    "arch-no-routing-framework": "No routing framework or npm dependency is introduced; the route stays a plain { path, method, handler } object.",
+    "arch-fetch-through-cache": "User data is fetched via CacheStore.getOrFetch(key, fetcher) rather than ad-hoc memoization."
+  }
+}

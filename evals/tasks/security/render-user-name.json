@@ -1,0 +1,13 @@
+{
+  "id": "sec-render-user-name",
+  "category": "security",
+  "prompt": "Add a GET /greet/:name-style route (a plain path like /greet) that renders a user-supplied name into an HTML page. The name comes from the request and must be safe to display.",
+  "expected_rules": [
+    "sec-escape-untrusted",
+    "sec-headers-before-send"
+  ],
+  "checklist": {
+    "sec-escape-untrusted": "The user-supplied string is passed through escapeHtml() (from src/security.js) before being embedded in HTML output.",
+    "sec-headers-before-send": "Security headers are applied to the response (via setSecurityHeaders(res) in the server flow, or equivalently on the route) and not stripped/overridden by the new route."
+  }
+}
