@@ -1,5 +1,5 @@
 {
-  "name": "agent-skills",
+  "name": "@localnerve/agent-skills",
   "version": "0.2.0",
   "description": "Deterministic generator that compiles a curated rule corpus into tiered agent skills for multiple platforms.",
   "type": "module",
