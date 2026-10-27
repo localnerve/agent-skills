@@ -12,12 +12,23 @@
     "skills:compile": "node src/compile.js",
     "skills:check": "node src/verify.js",
     "skills:mine": "node src/mine.js",
-    "skills:test": "node --test --test-concurrency=1 test/compile.test.mjs test/verify.test.mjs test/mine.test.mjs",
+    "preskills:test": "node -e \"const fs=require('fs'); fs.rmSync('coverage', {recursive:true, force:true}); fs.mkdirSync('coverage')\"",
+    "skills:test": "node --test --experimental-test-coverage --test-concurrency=1 test/compile.test.mjs test/verify.test.mjs test/mine.test.mjs --test-reporter=spec --test-reporter-destination=stdout --test-reporter=lcov --test-reporter-destination=coverage/lcov.info",
     "lint": "eslint ."
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "eslint": "^10.13.0",
     "globals": "^17.13.0"
-  }
+  },
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/localnerve"
+    },
+    {
+      "type": "paypal",
+      "url": "https://www.paypal.com/ncp/payment/DHCB5GUYMGX5U"
+    }
+  ]
 }
