@@ -1,6 +1,6 @@
 {
   "name": "@localnerve/agent-skills",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Deterministic generator that compiles a curated rule corpus into tiered agent skills for multiple platforms.",
   "type": "module",
   "private": true,
@@ -18,8 +18,11 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "eslint": "^10.13.0",
-    "globals": "^17.13.0"
+    "eslint": "^10.14.0",
+    "globals": "^17.14.0"
+  },
+  "overrides": {
+    "minimatch": "^11.0.5"
   },
   "funding": [
     {
